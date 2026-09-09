@@ -1,0 +1,10 @@
+RewriteEngine On
+
+# Если запрашиваемый объект является существующей директорией, пропускаем его
+RewriteCond %{REQUEST_FILENAME} -d [OR]
+# Если запрашиваемый объект является существующим файлом, пропускаем его
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^ - [L]
+
+# Все остальные запросы отправляем на index.php
+RewriteRule ^ index.php [L,QSA] 
