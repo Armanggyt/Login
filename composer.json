@@ -1,0 +1,12 @@
+{
+    "name": "armran/login",
+    "type": "project",
+    "license": "GPL-3.0-or-later",
+    "autoload": {
+        "psr-4": {
+            "Armran\\Login\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {}
+}
