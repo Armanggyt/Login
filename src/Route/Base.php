@@ -10,7 +10,11 @@ class Base {
         '403' => ['\Login\Controller\Error', 'accessDenied'],
     ];
     public static function checkPath() {
-        // $_SERVER['REQUEST_URI']... 
+$requestUri = $_SERVER['REQUEST_URI'];
+
+$path = parse_url($requestUri, PHP_URL_PATH);
+
+echo htmlspecialchars($path);
 
         $path = '/';
 
