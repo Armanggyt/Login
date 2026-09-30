@@ -11,6 +11,5 @@ class RegHTML extends BaseController {
         <input type="password" name="confirm_password" placeholder="Confirm Password" required>
         <input type="submit" name="RegSubmit">
         </form>';
-        $this->html();
-}
+    }
 }

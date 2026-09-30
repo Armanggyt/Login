@@ -1,6 +1,8 @@
 <?php
 namespace Login\Controller;
 
+use Login\Services\Db;
+
 class RegSubmit extends BaseController {
     public function submit() {
         $username = $_POST['username'] ?? '';
@@ -15,7 +17,7 @@ class RegSubmit extends BaseController {
         } elseif ($password !== $confirmPassword) {
             $this->content = 'Passwords do not match.';
         } else {
-            $db = new \PDO('mysql:host=db;dbname=default', 'user', 'user');
+            $db = new Db();
             $sth = $db->prepare('INSERT INTO users (name, email, password) VALUES (?, ?, ?)');
             $sth->execute([$username, $email, $password]);
             $this->content = 'Registration successful.';
