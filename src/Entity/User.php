@@ -34,6 +34,14 @@ class User {
     }
 
     public static function loadByEmail($email) {
-                // grel.
+        $db = new Db();
+        $users = $db->sendQuery('SELECT * FROM users where email=?', [$email]);
+        if (empty($users)) {
+            return FALSE;
+        }
+        $userData = reset($users);
+        $user = new static();
+        $user->extractData($userData);
+        return $user;
     }
 }
