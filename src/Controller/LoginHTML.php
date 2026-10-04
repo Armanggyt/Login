@@ -9,6 +9,5 @@ class LoginHTML extends BaseController {
             <input type="password" name="password" placeholder="Password" required>
             <input type="submit" name="LoginSubmit">
             </form>';
-        $this->html();
     }
 }

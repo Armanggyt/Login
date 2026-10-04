@@ -16,12 +16,13 @@ class RegSubmit extends BaseController {
             $this->content = 'All fields are required.';
         } elseif ($password !== $confirmPassword) {
             $this->content = 'Passwords do not match.';
+        } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $this->content = 'Invalid email format.';
         } else {
             $db = new Db();
             $sth = $db->prepare('INSERT INTO users (name, email, password) VALUES (?, ?, ?)');
             $sth->execute([$username, $email, $password]);
             $this->content = 'Registration successful.';
         }
-        $this->html();
     }
 }
