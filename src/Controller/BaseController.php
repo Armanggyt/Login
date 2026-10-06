@@ -18,7 +18,7 @@ class BaseController {
      * Before <body>
      */
     public function head() {
-        return '<!DOCTYPE html><html><head><title>{$this->title}</title><link rel="stylesheet" type="text/css" href="/assets/main.css"></head>';
+        return "<!DOCTYPE html><html><head><title>{$this->title}</title><link rel=\"stylesheet\" type=\"text/css\" href=\"/assets/main.css\"></head>";
     }
 
     /**

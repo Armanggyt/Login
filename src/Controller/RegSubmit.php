@@ -21,7 +21,7 @@ class RegSubmit extends BaseController {
         } else {
             $db = new Db();
             $sth = $db->prepare('INSERT INTO users (name, email, password) VALUES (?, ?, ?)');
-            $sth->execute([$username, $email, $password]);
+            $sth->execute([$username, $email, password_hash($password, PASSWORD_DEFAULT)]);
             $this->content = 'Registration successful.';
         }
     }

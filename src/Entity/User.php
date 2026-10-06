@@ -8,7 +8,7 @@ class User {
     protected $uid;
     protected $email;
     protected $name;
-    protected $pass;
+    protected $password;
     protected $created;
     protected $data;
 
@@ -18,8 +18,11 @@ class User {
         $this->pass = $password;
     }
     public function extractData($user) {
-        $this->uid = $user['uid'];
-        $this->name = $user['name'];
+        foreach($user as $key => $value) {
+            if (property_exists($this, $key)){
+                $this->{$key} = $value;
+            }
+        }
     }
     public static function load($uid) {
         $db = new Db();
@@ -29,6 +32,7 @@ class User {
         }
         $userData = reset($users);
         $user = new static();
+
         $user->extractData($userData);
         return $user;
     }
@@ -43,5 +47,9 @@ class User {
         $user = new static();
         $user->extractData($userData);
         return $user;
+    }
+
+    public function checkPassword($password) {
+        return password_verify($password, $this->password);
     }
 }
