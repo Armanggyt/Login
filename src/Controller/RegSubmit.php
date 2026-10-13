@@ -5,6 +5,8 @@ use Login\Services\Db;
 
 class RegSubmit extends BaseController {
     public function submit() {
+            session_start();
+
         $username = $_POST['username'] ?? '';
         $email = $_POST['email'] ?? '';
         $password = $_POST['password'] ?? '';
@@ -22,7 +24,10 @@ class RegSubmit extends BaseController {
             $db = new Db();
             $sth = $db->prepare('INSERT INTO users (name, email, password) VALUES (?, ?, ?)');
             $sth->execute([$username, $email, password_hash($password, PASSWORD_DEFAULT)]);
-            $this->content = 'Registration successful.';
+
+            $sessionId = session_id();
+            $sth = $db->prepare('INSERT INTO sessions (uid, session_id) VALUES (?, ?)');
+            $sth->execute([$db->lastInsertId(), $sessionId]);
         }
     }
 }
