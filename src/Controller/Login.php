@@ -1,11 +1,19 @@
 <?php
-
 namespace Login\Controller;
 
 use Login\Entity\User;
 use Login\Services\Debug;
+use Login\Services\Auth;
 
-class LoginSubmit extends BaseController {
+class Login extends BaseController {
+    public function form() {
+        $this->title = "Login";
+        $this->content = '<form action="/loginSubmit" method="post">
+            <input type="email" name="email" placeholder="E-mail" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="submit" name="LoginSubmit">
+            </form>';
+    }
     public function submit() {
         $this->title = "Login";
 
@@ -19,8 +27,10 @@ class LoginSubmit extends BaseController {
             echo 'All fields are required.';
         }
         $checkUser = User::loadByEmail($username);
+
         if ($checkUser && $checkUser->checkPassword($password)) {
-            print 'Thats ok';
+            Auth::authUser($checkUser->id());
+            \header('Location: \\');
         } else {
             print 'Login failed';
         }

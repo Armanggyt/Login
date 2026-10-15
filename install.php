@@ -17,9 +17,9 @@ $db->sendQuery("ALTER TABLE users ADD COLUMN IF NOT EXISTS data TEXT NULL");
 $db->sendQuery("ALTER TABLE users ADD COLUMN IF NOT EXISTS created TIMESTAMP DEFAULT CURRENT_TIMESTAMP");
 
 $db->sendQuery('CREATE TABLE IF NOT EXISTS sessions (
-    uid INT NOT NULL
+    id INT AUTO_INCREMENT NOT NULL PRIMARY KEY 
 )');
 $db->sendQuery("TRUNCATE TABLE sessions;");
 $db->sendQuery("ALTER TABLE sessions ADD COLUMN IF NOT EXISTS session_id VARCHAR(255) NOT NULL");
-$db->sendQuery("ALTER TABLE sessions ADD COLUMN IF NOT EXISTS id INT ");
+$db->sendQuery("ALTER TABLE sessions ADD COLUMN IF NOT EXISTS uid INT ");
 $db->sendQuery("ALTER TABLE sessions ADD COLUMN IF NOT EXISTS data TEXT NULL");

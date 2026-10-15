@@ -7,8 +7,8 @@ class Base {
         '/' => ['\Login\Controller\Main', 'page'],
         '/register' => ['\Login\Controller\RegHTML', 'form'],
         '/regsubmit' => ['\Login\Controller\RegSubmit', 'submit'],
-        '/login' => ['\Login\Controller\LoginHTML', 'form'],
-        '/loginSubmit' => ['\Login\Controller\LoginSubmit', 'submit'],
+        '/login' => ['\Login\Controller\Login', 'form'],
+        '/loginSubmit' => ['\Login\Controller\Login', 'submit'],
         '404' => ['\Login\Controller\Error', 'notFound'],
         '403' => ['\Login\Controller\Error', 'accessDenied'],
     ];

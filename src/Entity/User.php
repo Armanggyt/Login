@@ -52,4 +52,8 @@ class User {
     public function checkPassword($password) {
         return password_verify($password, $this->password);
     }
+
+    public function id() {
+        return $this->uid;
+    }
 }

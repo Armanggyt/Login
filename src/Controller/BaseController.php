@@ -1,9 +1,16 @@
 <?php
 namespace Login\Controller;
+use Login\Services\Auth;
 
 class BaseController {
     protected $title;
     protected $content;
+    protected $auth;
+
+    public function __construct() {
+        $this->auth = Auth::checkAuth();
+    }
+    
     /**
      * Full page html.
      */

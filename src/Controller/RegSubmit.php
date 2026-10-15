@@ -2,11 +2,10 @@
 namespace Login\Controller;
 
 use Login\Services\Db;
+use Login\Services\Auth;
 
 class RegSubmit extends BaseController {
     public function submit() {
-            session_start();
-
         $username = $_POST['username'] ?? '';
         $email = $_POST['email'] ?? '';
         $password = $_POST['password'] ?? '';
@@ -25,9 +24,7 @@ class RegSubmit extends BaseController {
             $sth = $db->prepare('INSERT INTO users (name, email, password) VALUES (?, ?, ?)');
             $sth->execute([$username, $email, password_hash($password, PASSWORD_DEFAULT)]);
 
-            $sessionId = session_id();
-            $sth = $db->prepare('INSERT INTO sessions (uid, session_id) VALUES (?, ?)');
-            $sth->execute([$db->lastInsertId(), $sessionId]);
+            Auth::authUser($db->lastInsertId());
         }
     }
 }
