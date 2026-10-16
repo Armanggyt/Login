@@ -1,16 +1,22 @@
 <?php
 namespace Login\Controller;
 use Login\Services\Auth;
-
+use Login\Services\Debug;
 class BaseController {
     protected $title;
     protected $content;
     protected $auth;
+    protected $template = 'index';
 
     public function __construct() {
         $this->auth = Auth::checkAuth();
+        $classPath = explode('\\', strtolower(get_class($this)));
+        $className = end($classPath);
+        if (file_exists(\CURRENT_DIR . '/templates/' . $className . '.html.twig' )) {
+            $this->setTemplate($className);
+        }
     }
-    
+
     /**
      * Full page html.
      */
@@ -49,5 +55,20 @@ class BaseController {
      */
     public function footer() {
         return '</body>';
+    }
+
+    public function getContent() {
+        return $this->content;
+    }
+    public function getTitle() {
+        return $this->title;
+    }
+
+    public function getTemplate() {
+        return $this->template . '.html.twig';
+    }
+
+    public function setTemplate($template) {
+        $this->template = $template;
     }
 }
