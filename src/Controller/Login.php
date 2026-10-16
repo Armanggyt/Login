@@ -12,20 +12,20 @@ class Login extends BaseController {
             <input type="email" name="email" placeholder="E-mail" required>
             <input type="password" name="password" placeholder="Password" required>
             <input type="submit" name="LoginSubmit">
+            <a href="/Reset" name="Reset">Reset Password</a>            
             </form>';
     }
     public function submit() {
         $this->title = "Login";
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // $email = $_POST['email'] ?? '';
             $password = $_POST['password'] ?? '';
             $username = $_POST['email'] ?? '';
         }
 
         if (empty($password) || empty($username)) {
             echo 'All fields are required.';
-        }
+        }   
         $checkUser = User::loadByEmail($username);
 
         if ($checkUser && $checkUser->checkPassword($password)) {
@@ -34,5 +34,10 @@ class Login extends BaseController {
         } else {
             print 'Login failed';
         }
+    }
+     public function generateToken() {
+        $token = bin2hex(random_bytes(32));
+        echo $token;
+
     }
 }

@@ -23,3 +23,11 @@ $db->sendQuery("TRUNCATE TABLE sessions;");
 $db->sendQuery("ALTER TABLE sessions ADD COLUMN IF NOT EXISTS session_id VARCHAR(255) NOT NULL");
 $db->sendQuery("ALTER TABLE sessions ADD COLUMN IF NOT EXISTS uid INT ");
 $db->sendQuery("ALTER TABLE sessions ADD COLUMN IF NOT EXISTS data TEXT NULL");
+
+$db->sendQuery('CREATE TABLE IF NOT EXISTS tokens (
+    id INT AUTO_INCREMENT NOT NULL PRIMARY KEY 
+)');
+$db->sendQuery("TRUNCATE TABLE tokens;");
+$db->sendQuery("ALTER TABLE tokens ADD COLUMN IF NOT EXISTS token VARCHAR(255) NOT NULL");
+$db->sendQuery("ALTER TABLE tokens ADD COLUMN IF NOT EXISTS email VARCHAR(255) NOT NULL");
+

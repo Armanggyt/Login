@@ -5,10 +5,11 @@ namespace Login\Route;
 class Base {
     public static $paths = [
         '/' => ['\Login\Controller\Main', 'page'],
-        '/register' => ['\Login\Controller\RegHTML', 'form'],
-        '/regsubmit' => ['\Login\Controller\RegSubmit', 'submit'],
+        '/register' => ['\Login\Controller\Register', 'form'],
+        '/regsubmit' => ['\Login\Controller\Register', 'submit'],
         '/login' => ['\Login\Controller\Login', 'form'],
         '/loginSubmit' => ['\Login\Controller\Login', 'submit'],
+        '/Reset' => ['\Login\Controller\Login', 'generateToken'],
         '404' => ['\Login\Controller\Error', 'notFound'],
         '403' => ['\Login\Controller\Error', 'accessDenied'],
     ];
