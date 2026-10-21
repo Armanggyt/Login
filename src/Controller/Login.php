@@ -35,9 +35,17 @@ class Login extends BaseController {
             print 'Login failed';
         }
     }
-     public function generateToken() {
-        $token = bin2hex(random_bytes(32));
-        echo $token;
+     public function resetFormPage() {
+        $this->setTitle('Reset password');
+        
+         $this->content = '<form action="/reset" method="post">
+            <input type="email" name="email" placeholder="E-mail" required>
+            <input type="submit" name="resetSubmit" value="Reset Password">
+            </form>';
+    }
 
+    public function sendResetEmail() {
+        $token = bin2hex(random_bytes(32));
+        $this->content = 'All ok';
     }
 }

@@ -64,6 +64,10 @@ class BaseController {
         return $this->title;
     }
 
+    public function setTitle($title) {
+        $this->title = $title;
+    }
+
     public function getTemplate() {
         return $this->template . '.html.twig';
     }
