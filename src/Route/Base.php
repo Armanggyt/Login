@@ -13,11 +13,15 @@ class Base {
             '/login' => ['\Login\Controller\Login', 'form'],
             '/loginSubmit' => ['\Login\Controller\Login', 'submit'],
             '/reset' => ['\Login\Controller\Login', 'resetFormPage'],
+            '/reset-password' => ['\Login\Controller\ResetPassword', 'form'],
             '404' => ['\Login\Controller\Error', 'notFound'],
             '403' => ['\Login\Controller\Error', 'accessDenied'],
         ],
         'POST' => [
             '/reset' => ['\Login\Controller\Login', 'sendResetEmail'],
+            '/regsubmit' => ['\Login\Controller\Register', 'submit'],
+            '/loginSubmit' => ['\Login\Controller\Login', 'submit'],
+            '/update-password' => ['\Login\Controller\ResetPassword', 'updatePassword'],
         ]
     ];
 
