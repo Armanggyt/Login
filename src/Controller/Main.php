@@ -9,9 +9,18 @@ class Main extends BaseController {
     public function page() {
         $this->title = 'Front page';
         if ($this->auth) {
-            $this->content = 'This is a front <b>Page</b> authorized';
+            $this->content = [
+                'html' => 'This is a front <b>Page</b> authorized',
+                'prefix' => '<div>',
+                'suffix' => '</div>',
+                'css' => ['assets/m2.css'],
+            ]; 
         } else {
-            $this->content = 'This is s not authorized front page';
+            $this->content = [ 
+                'html' => 'This is s not authorized front page',
+                'prefix' => '<div>',
+                'suffix' => '</div>'
+            ];
         }
     }
 }

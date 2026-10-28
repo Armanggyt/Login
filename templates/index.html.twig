@@ -2,11 +2,16 @@
 <html>
     <head>
         <title>{{ title }} - By TWIG</title>
+        {% if head.css is defined %}
+            {% for url in head.css %}
+                <link rel="stylesheet" type="text/css" href="/{{ url }}">
+            {% endfor %}
+        {% endif %}
     </head>
     <body>
         <div id="content-wrapper">
             {% block content %}
-                {{ content }}
+                {{ html }}
             {% endblock %}
 
         </div>
